@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!-- 具体sql操作数据库 -->
+<mapper namespace="com.example.bookdemo.mapper.Login_Mapper">
+
+	<select id="findLoginInfo" resultType="com.example.bookdemo.entity.Login">
+	  		select   *   from  login ; 
+	 </select>
+	 
+	 <!-- 错误1,int->integer -->
+	  <delete id="deleteLogin" parameterType="java.lang.Integer">
+	 	delete from login where USER = #{USER,jdbcType=VARCHAR} 
+	 </delete> 
+	 
+	 <insert id="insertLogin" parameterType="com.example.bookdemo.entity.Login" >
+	   insert into login (ID,USER,PASSWORD)  
+	    values (#{ID}, #{USER},#{PASSWORD}) 
+	 </insert>
+	 
+	  <update id="updateLogin" parameterType="com.example.bookdemo.entity.Login">
+		 update login set PASSWORD = #{PASSWORD},ID= #{ID} where USER = #{USER}
+	 </update>
+ 
+	 
+	 <select id="findByUSER" resultType="com.example.bookdemo.entity.Login">
+	  select   *   from  login where USER = #{USER,jdbcType=VARCHAR}; 
+	 </select>
+ 
+	 
+ 
+	
+	
+</mapper>
